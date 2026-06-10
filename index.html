@@ -544,10 +544,45 @@
       pointer-events: none; transition: opacity 0.3s;
     }
     .modal-overlay.active { opacity: 1; pointer-events: all; }
-    .modal-box { background: #fff; border-radius: 16px; padding: 30px; max-width: 480px; width: 90%; max-height: 80vh; overflow-y: auto; position: relative; }
+    .modal-box { background: #fff; border-radius: 16px; padding: 30px; max-width: 560px; width: 92%; max-height: 86vh; overflow-y: auto; position: relative; }
     .modal-close { position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #888; }
     .modal-box h3 { font-size: 1.1rem; color: var(--ink); margin-bottom: 8px; padding-right: 24px; }
     .modal-box .modal-lead { font-size: 0.82rem; color: #777; font-family:'Noto Sans JP',sans-serif; margin-bottom: 18px; line-height:1.8; }
+    .cform { font-family: 'Noto Sans JP', sans-serif; }
+    .cform .field { margin-bottom: 14px; }
+    .cform label {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.82rem; font-weight: 600; color: var(--ink); margin-bottom: 6px;
+    }
+    .cform .req {
+      background: #d2433a; color: #fff; font-size: 0.62rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; letter-spacing: 0.04em;
+    }
+    .cform .opt {
+      background: #e7e3da; color: #8a8475; font-size: 0.62rem; font-weight: 700;
+      padding: 2px 7px; border-radius: 4px; letter-spacing: 0.04em;
+    }
+    .cform input, .cform select, .cform textarea {
+      width: 100%; box-sizing: border-box; font-family: inherit; font-size: 0.9rem;
+      color: var(--ink); background: #faf8f3; border: 1px solid #ddd7cc;
+      border-radius: 8px; padding: 10px 12px;
+    }
+    .cform input:focus, .cform select:focus, .cform textarea:focus {
+      outline: none; border-color: var(--accent); background: #fff;
+      box-shadow: 0 0 0 3px rgba(15,155,155,0.12);
+    }
+    .cform textarea { min-height: 110px; resize: vertical; }
+    .cform .row-tel { display: flex; align-items: center; gap: 8px; }
+    .cform .row-tel span { color: #999; }
+    .cform .submit-row { text-align: center; margin-top: 22px; }
+    .cform .cform-submit {
+      background: var(--accent); color: #fff; border: none; border-radius: 999px;
+      padding: 13px 44px; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+      font-family: inherit; transition: opacity 0.15s ease;
+    }
+    .cform .cform-submit:hover { opacity: 0.88; }
+    .cform .cform-note { font-size: 0.72rem; color: #999; text-align: center; margin-top: 12px; line-height: 1.7; }
+    .cform .err { color: #d2433a; font-size: 0.78rem; text-align: center; margin-top: 12px; display: none; }
     .clinic-list { list-style: none; }
     .clinic-list li { border-bottom: 1px solid #eee; padding: 16px 0; }
     .clinic-list h4 { font-size: 0.95rem; color: var(--ink); margin-bottom: 6px; }
@@ -648,7 +683,7 @@
       </div>
       <p>リアス株式会社（LIAS）は、グローバルな美容医療関連製品（韓国・アメリカ・ヨーロッパなど）を<br>日本の医療機関へお届けする専門商社です。<br>仕入れから運営まで、クリニックの「あったらいいな」を支えます。</p>
       <button class="btn-cta-large" onclick="openContactModal()">
-        <span>お取引・導入のご相談</span>
+        <span>お問い合わせ</span>
         <span>→</span>
       </button>
     </section>
@@ -815,7 +850,7 @@
 
     <!-- CTA -->
     <section class="cta-section">
-      <p>お取引・導入のご相談は<br>こちらからお気軽にどうぞ。</p>
+      <p>お問い合わせは<br>こちらからお気軽にどうぞ。</p>
       <button class="btn-cta-large" onclick="openContactModal()">
         <span>お問い合わせ</span><span>→</span>
       </button>
@@ -845,7 +880,7 @@
     </div>
     <div class="side-contact">
       <div class="sc-eyebrow">Contact</div>
-      <p class="sc-lead">お取引・導入のご相談を<br>承っております。</p>
+      <p class="sc-lead">お問い合わせを<br>承っております。</p>
       <div class="sc-row"><span class="sc-k">TEL</span><a href="tel:0647038007">06-4703-8007</a></div>
       <div class="sc-row"><span class="sc-k">MAIL</span><a href="mailto:info@lias.jp">info@lias.jp</a></div>
       <button class="sc-btn" onclick="openContactModal()">お問い合わせ <span>→</span></button>
@@ -871,7 +906,7 @@
 <!-- STICKY CTA -->
 <button class="sticky-cta" onclick="openContactModal()">
   <span class="cta-icon">✉</span>
-  <span>お取引のご相談</span>
+  <span>お問い合わせ</span>
 </button>
 
 <!-- CONTACT MODAL -->
@@ -879,17 +914,56 @@
   <div class="modal-box">
     <button class="modal-close" onclick="closeContactModal()" aria-label="閉じる">×</button>
     <h3>お問い合わせ</h3>
-    <p class="modal-lead">お取引・導入のご相談は、下記までお気軽にご連絡ください。</p>
-    <ul class="clinic-list">
-      <li>
-        <h4>メール</h4>
-        <div class="clinic-links"><a href="mailto:info@lias.jp">info@lias.jp</a></div>
-      </li>
-      <li>
-        <h4>電話番号</h4>
-        <div class="clinic-links"><a href="tel:0647038007">06-4703-8007</a></div>
-      </li>
-    </ul>
+    <p class="modal-lead">下記フォームにご記入のうえ送信してください。<span class="req" style="margin-left:4px;">必須</span>は入力必須項目です。</p>
+    <form class="cform" id="contactForm" onsubmit="return submitContactForm(event)">
+      <div class="field">
+        <label>ご施設名 <span class="req">必須</span></label>
+        <input type="text" id="cf-org" required placeholder="例）リアスクリニック">
+      </div>
+      <div class="field">
+        <label>お名前 <span class="req">必須</span></label>
+        <input type="text" id="cf-name" required placeholder="例）山田 太郎">
+      </div>
+      <div class="field">
+        <label>フリガナ <span class="req">必須</span></label>
+        <input type="text" id="cf-kana" required placeholder="例）ヤマダ タロウ">
+      </div>
+      <div class="field">
+        <label>メールアドレス <span class="req">必須</span></label>
+        <input type="email" id="cf-email" required placeholder="hoge@example.com">
+      </div>
+      <div class="field">
+        <label>メールアドレス（確認） <span class="req">必須</span></label>
+        <input type="email" id="cf-email2" required placeholder="確認のため再入力してください">
+      </div>
+      <div class="field">
+        <label>電話番号 <span class="opt">任意</span></label>
+        <div class="row-tel">
+          <input type="tel" id="cf-tel1" maxlength="5" inputmode="numeric">
+          <span>-</span>
+          <input type="tel" id="cf-tel2" maxlength="4" inputmode="numeric">
+          <span>-</span>
+          <input type="tel" id="cf-tel3" maxlength="4" inputmode="numeric">
+        </div>
+      </div>
+      <div class="field">
+        <label>郵便番号・ご住所 <span class="opt">任意</span></label>
+        <input type="text" id="cf-addr" placeholder="例）〒550-0011 大阪府大阪市西区…">
+      </div>
+      <div class="field">
+        <label>URL（Webサイト等） <span class="opt">任意</span></label>
+        <input type="url" id="cf-url" placeholder="https://">
+      </div>
+      <div class="field">
+        <label>お問い合わせ内容 <span class="req">必須</span></label>
+        <textarea id="cf-msg" required placeholder="ご相談・ご依頼内容をご記入ください。"></textarea>
+      </div>
+      <div class="err" id="cf-err"></div>
+      <div class="submit-row">
+        <button type="submit" class="cform-submit">送信する</button>
+      </div>
+      <p class="cform-note">送信ボタンを押すと、ご利用のメールソフトが起動し<br>入力内容が info@lias.jp 宛に作成されます。</p>
+    </form>
   </div>
 </div>
 
@@ -921,6 +995,36 @@
   function closeContactModal() {
     document.getElementById('contact-modal').classList.remove('active');
     document.body.style.overflow = '';
+  }
+  function submitContactForm(e) {
+    e.preventDefault();
+    var v = function (id) { return (document.getElementById(id).value || '').trim(); };
+    var err = document.getElementById('cf-err');
+    var email = v('cf-email'), email2 = v('cf-email2');
+    if (email !== email2) {
+      err.textContent = 'メールアドレスが一致しません。ご確認ください。';
+      err.style.display = 'block';
+      return false;
+    }
+    err.style.display = 'none';
+    var tel = [v('cf-tel1'), v('cf-tel2'), v('cf-tel3')].filter(Boolean).join('-');
+    var lines = [
+      '【ご施設名】' + v('cf-org'),
+      '【お名前】' + v('cf-name'),
+      '【フリガナ】' + v('cf-kana'),
+      '【メールアドレス】' + email,
+      '【電話番号】' + (tel || '（未入力）'),
+      '【ご住所】' + (v('cf-addr') || '（未入力）'),
+      '【URL】' + (v('cf-url') || '（未入力）'),
+      '',
+      '【お問い合わせ内容】',
+      v('cf-msg')
+    ];
+    var subject = 'お問い合わせ（' + v('cf-org') + ' / ' + v('cf-name') + '）';
+    var body = lines.join('\r\n');
+    window.location.href = 'mailto:info@lias.jp?subject=' +
+      encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    return false;
   }
   document.getElementById('contact-modal').addEventListener('click', function (e) {
     if (e.target === this) closeContactModal();
